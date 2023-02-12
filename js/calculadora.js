@@ -24,6 +24,10 @@ class calculadora {
             {id: 'btnDivision', valor: '/'},
             {id: 'btnIgual', valor: '='},
             {id: 'btnBorrar', valor: 'C'},
+            {id: 'btnComa', valor: ','},
+            {id: 'btnRetroceso', valor: '<-'},
+            {id: 'btnPorcentaje', valor: '%'},
+            {id: 'btnRaiz', valor: '√'}
         ];
         this.calculadora = document.createElement('div');
         this.calculadora.setAttribute('id','calculadora');
@@ -90,8 +94,8 @@ class calculadora {
                     }
                 }
                 // solo podemos añadir una coma decimal
-                if (boton.valor === '.') {
-                    if (this.input.value.indexOf('.') === -1) {
+                if (boton.valor === ',') {
+                    if (this.input.value.indexOf(',') === -1) {
                         this.input.value += boton.valor;
                     }
                 }
