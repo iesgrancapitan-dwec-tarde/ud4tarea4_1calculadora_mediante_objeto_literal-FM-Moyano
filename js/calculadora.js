@@ -48,27 +48,31 @@ class calculadora {
 
     // eventos de los botones metidos en un array
     eventosBotones() {
-        this.botones.forEach(boton => {
-            //si pulsamos la tecla  retroceso del teclado borra el ultimo numero
-            window.addEventListener('keydown', (e) => {
-                if (e.keyCode === 8) {
-                    // borra solo el ultimo numero
-                    // si solo hay un numero borra el 0
-                    if (this.input.value.length == 1) {
-                        this.input.value = '0';
-                    } else
-                    {
-                    // si hay mas de un numero borra el ultimo
-                    // if (this.input.value.length > 1) {
-                        let valor = this.input.value.substring(0, this.input.value.length - 1);
-                        this.input.value = valor;
-                    }
-
-                    
+         //si pulsamos la tecla  retroceso del teclado borra el ultimo numero
+         window.addEventListener('keydown', (e) => {
+            if (e.keyCode === 8) {
+                e.preventDefault();
+                console.log(this.input.value);
+                // borra solo el ultimo numero
+                // si solo hay un numero borra el 0
+                if (this.input.value.length == 1) {
+                    this.input.value = '0';
+                } else
+                {
+                // si hay mas de un numero borra el ultimo
+                // if (this.input.value.length > 1) {
+                    let valor = this.input.value.substring(0, this.input.value.length - 1);
+                    this.input.value = valor;
+                    // quitamos todos los puntos que haya
+                    this.input.value = this.input.value.replace(/\./g, '');
+                    //añadimos los puntos necesarios segun la longitud
+                    this.input.value = this.input.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1.');
                 }
-            });
 
-
+                
+            }
+        });
+        this.botones.forEach(boton => {
             document.getElementById(boton.id).addEventListener('click', () => {
             // si el valor del boton es igual a C se borra el input
                 if (boton.valor === 'C') {
